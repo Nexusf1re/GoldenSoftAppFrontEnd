@@ -3,8 +3,12 @@
         /* largura da caixa Para Dispositivos Móveis*/
         margin-left: 5px;
         margin-right: 5px;
-        margin-top: 15vh;
+        margin-top: 10vh;
         max-width: 500px;
+    }
+
+    #image img{
+        width: 100px !important;
     }
 
     li {
