@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="resources/style.css" />
+    <link rel="stylesheet" href="resources/style/form.css" />
     <link
       href="https://fonts.googleapis.com/css?family=JetBrains Mono"
       rel="stylesheet"
@@ -19,9 +19,9 @@
 
   <body>
     
-    <div class="box" tabindex="0">
+    <div class="box">
       <form id="expenseForm">
-          <div id="image"><img src="https://paogoldensoft.com.br/wp-content/uploads/2024/02/cropped-Sem-nome-500-x-500-px-192x192.png" alt=""></div>
+          <div id="image"><img disable selected value src="https://paogoldensoft.com.br/wp-content/uploads/2024/02/cropped-Sem-nome-500-x-500-px-192x192.png" alt="Go Logo"></div>
           <legend>
             <b style="color: rgb(0, 0, 0);">Despesas</b>
           </legend>
@@ -30,6 +30,7 @@
           <div class="inputBox" id="valor">
             <label id="valorout" class="labelInput">R$</label>
             <input
+             tabindex="0"
               id="valorinn"
               autocomplete="off"
               type="number"
@@ -101,45 +102,12 @@
           <input type="submit" name="submit" id="submit" value="Enviar" />
 
           <p class="exit">
-            <a style="color: white" href="config/logout.php">Sair</a>
+            <a style="color: white" href="login.html">Sair</a>
           </p>
         </fieldset>
       </form>
     </div>
 
-    <script>
-      document
-        .getElementById("expenseForm")
-        .addEventListener("submit", async (event) => {
-          event.preventDefault(); // Impede o envio padrão do formulário
-
-          const nome = document.getElementById("tipo").value;
-          const valor = document.getElementById("valorinn").value;
-          const descricao = document.getElementById("pgto").value;
-          const data = document.getElementById("data").value;
-
-          // Atualize a URL para apontar para o seu aplicativo Vercel
-          const response = await fetch(
-            "https://golden-soft-app-back-end.vercel.app/inserir",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ nome, valor, descricao, data }),
-            }
-          );
-
-          if (response.ok) {
-            const message = await response.text();
-            alert(message);
-            // Limpa o formulário após envio
-            document.getElementById("expenseForm").reset();
-          } else {
-            const errorMessage = await response.text();
-            alert(`Erro ao enviar os dados: ${errorMessage}`);
-          }
-        });
-    </script>
+    <script src="services/form.js"></script>
   </body>
 </html>

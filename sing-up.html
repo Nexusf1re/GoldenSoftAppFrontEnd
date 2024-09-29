@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar</title>
+<link rel="stylesheet" href="resources/style/sing-up.css"> 
+<link rel="icon" href="resources/img/Golden-Soft.png">
+<link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+<div class="wrapper">
+<form id="registerForm">
+<img src="resources/img/Golden-Soft.png" alt="logo">
+<h1>Cadastre-se</h1>
+<!--  <h3 style="text-align: center;">Abreu's Enterprise</h3> -->
+
+<h4 style="text-align: center;">Controle Financeiro</h4>
+
+<p>
+<div class="input-box" >
+    <input autocomplete="off" require type="text" style="text-transform: uppercase;" id="usuario" placeholder="Usuário" name="usuario">
+    <i style="color: black;" class='bx bxs-user'></i>
+</div>
+</p>
+
+<p>
+    <div class="input-box" >
+        <input autocomplete="off" require type="text" style="text-transform: lowercase;" placeholder="Email" id="email" name="email">
+        <i style="color: black;" class='bx bxs-user'></i>
+    </div>
+    </p>
+
+<p>
+<div class="input-box">
+    <input autocomplete="off" require type="password" placeholder="Senha" id="senha" name="senha">
+    <i style="color: black;" class='bx bxs-lock-alt'></i>
+    <br><br>
+    <input autocomplete="off" require type="password" id="senhaConfirmar" placeholder="Confirmar Senha" name="senhaConfirmar">
+    <u style="color: black;" class='bx bxs-lock-alt'></u>
+</div>
+</p>
+
+<p>
+    <button type="submit" class="btn">Cadastrar</button>
+</p>
+<p>
+    <button id="login"><a href="login.html">Login</a></button>
+</p>
+</div>
+
+
+</form>
+</div>
+<script src="services/register.js"></script>
+</body>
+
+</html>
