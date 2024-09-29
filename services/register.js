@@ -32,8 +32,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         if(response.ok) {
             const result = await response.json();
             alert('Cadastro realizado com sucesso!');
-            res.redirect('https://goldensoft-despesas.vercel.app/login.html');
-          
         } else {
         const errorData = await response.json();
         alert(`Erro: ${errorData.message}`);
