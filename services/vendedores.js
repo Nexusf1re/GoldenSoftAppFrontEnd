@@ -16,6 +16,3 @@ async function fetchVendedores() {
       console.error("Erro ao buscar os vendedores:", error);
     }
   }
-
-  // Chama a função ao carregar a página
-  window.onload = fetchVendedores;
