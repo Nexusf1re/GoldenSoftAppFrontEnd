@@ -1,0 +1,21 @@
+// Função para buscar movimentações do servidor
+async function fetchVendedores() {
+    try {
+      const response = await fetch('https://golden-soft-app-back-end.vercel.app/vendedores');
+      const vendedores  = await response.json();
+
+      const selectElementTipo = document.getElementById("tipo");
+
+      vendedores.forEach(vendedor => {
+        const optionVendedor = document.createElement("option");
+        optionVendedor.value = vendedor.vendedor;  // Pega o valor correto do campo "vendedor"
+        optionVendedor.textContent = vendedor.vendedor;  // Exibe o texto correto no dropdown
+        selectElementTipo.appendChild(optionVendedor);
+      });
+    } catch (error) {
+      console.error("Erro ao buscar os vendedores:", error);
+    }
+  }
+
+  // Chama a função ao carregar a página
+  window.onload = fetchVendedores;
