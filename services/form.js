@@ -30,3 +30,12 @@ document
             alert(`Erro ao enviar os dados: ${errorMessage}`);
           }
         });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+          // Remove o token do localStorage
+          localStorage.removeItem('token'); // Certifique-se de usar a mesma chave que você usou ao armazenar o token
+      
+          // Redireciona o usuário para a página de login
+          window.location.href = '../index.html'; // Altere para o caminho correto da sua página de login
+      });
+      

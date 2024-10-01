@@ -2,78 +2,52 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="resources/style/form.css" />
-<link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet" />
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-<link rel="icon" href="resources/img/Golden-Soft.png" />
-<title>Despesas Golden Soft</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html manifest="cache.manifest">
+    <title>Login</title>
+    <link rel="stylesheet" href="resources/style/login.css"> 
+    <link rel="icon" href="resources/img/Golden-Soft.png">
+    <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-
 <body>
+    <div class="wrapper">
+        <form id="loginForm">
+            <img src="resources/img/Golden-Soft.png" alt="logo">
+            <h1>Login</h1>
+            
+            <h4 style="text-align: center;"> <a href="./public/form.html">Controle de Despesas</a><h4>
+            
+            <p>
+            <div class="input-box" >
+                <input autocomplete="off" type="text" style="text-transform: uppercase;" id="username" placeholder="Usuário" name="username">
+                <i style="color: black;" class='bx bxs-user'></i>
+            </div>
+            </p>
 
-<div class="box">
-<form id="expenseForm">
-<div id="image"><img disable selected value
-    src="https://paogoldensoft.com.br/wp-content/uploads/2024/02/cropped-Sem-nome-500-x-500-px-192x192.png"
-    alt="Go Logo"></div>
-<legend>
-  <b style="color: rgb(0, 0, 0);">Despesas</b>
-</legend>
-<br />
-<br />
-<div class="inputBox" id="valor">
-  <label id="valorout" class="labelInput">R$</label>
-  <input tabindex="0" id="valorinn" autocomplete="off" type="number" max="100000000.00"
-    onkeypress="return event.charCode != 32" step="0.01" name="valor" class="inputUser" required />
-  <label id="valorin" for="valor" class="labelInput">Valor:</label>
-</div>
-<br />
-<br />
-<div class="inputBox">
-  <label for="tipo">Vendedor</label>
-  <select class="selects" name="tipo" id="tipo" required>
-    <option disabled selected value>Selecionar</option>
-  </select>
-</div>
+            <p>
+            <div class="input-box">
+                <input type="password" placeholder="Senha" id="password" name="password">
+                <i style="color: black;" class='bx bxs-lock-alt'></i>
+            </div>
+            </p>
 
-<script src="services/vendedores.js"></script>
+            <p>
+                <button type="submit" class="btn">Entrar</button>
+            </p>
+         
+            <p>
+                <button id="cadastrar">Não tem um conta?<a href="./public/sing-up.html">Cadastre-se</a></button>
+            </p>
+           
+    </div>
+            
 
-<br />
-<div class="inputBox">
-  <label for="pgto">Movimentação</label>
-  <select class="selects" name="pgto" id="pgto" required>
-    <option disabled selected value>Selecionar</option>
-  </select>
-</div>
-
-<script src="services/movimentacoes.js"> </script>
-
-<br />
-<div class="inputBox">
-  <label for="data"><b>Data</b></label>
-  <input class="selects" style="border-radius: 18px" type="date" name="data" id="data" required />
-</div>
-<br />
-
-<input type="submit" name="submit" id="submit" value="Enviar" />
-
-<p class="exit">
-  <a style="color: white" href="login.html">Sair</a>
-</p>
-</fieldset>
-</form>
-</div>
-
-<script src="services/form.js"></script>
-<script>
-window.onload = () => {
-  fetchMovimentacoes();  // Busca e preenche movimentações
-  fetchVendedores();     // Busca e preenche vendedores
-};
-</script>
+    </form>
+    </div>
+    <script src="services/login.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,32 @@
+document.getElementById('loginForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value; 
+    const password = document.getElementById('password').value; 
+
+    // Faz a requisição para o backend
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })  // Envia os dados do formulário
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        alert(result.message);  // Exibe a mensagem do backend
+
+        // Armazena o token no localStorage
+        localStorage.setItem('token', result.token);
+        
+        // Redireciona para outra página ou executa outra ação aqui, se necessário
+            
+        // Redireciona para o form.html
+        window.location.href = 'form.html';
+        
+    } else {
+        const error = await response.json();
+        alert('Erro: ' + error.message);  // Exibe a mensagem de erro
+    }
+});
