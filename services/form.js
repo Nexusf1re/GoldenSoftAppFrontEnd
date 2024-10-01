@@ -1,3 +1,6 @@
+const API_3000 = "http://localhost:3000";
+const API_URL = "https://golden-soft-app-back-end.vercel.app";
+
 document
         .getElementById("expenseForm")
         .addEventListener("submit", async (event) => {
@@ -10,7 +13,7 @@ document
 
           // Atualize a URL para apontar para o seu aplicativo Vercel
           const response = await fetch(
-            "https://golden-soft-app-back-end.vercel.app/inserir",
+            API_URL+"/inserir",
             {
               method: "POST",
               headers: {

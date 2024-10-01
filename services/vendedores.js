@@ -1,7 +1,10 @@
+
+
+
 // Função para buscar movimentações do servidor
 async function fetchVendedores() {
     try {
-      const response = await fetch('https://golden-soft-app-back-end.vercel.app/vendedores');
+      const response = await fetch(API_URL+'/vendedores');
       const vendedores  = await response.json();
 
       const selectElementTipo = document.getElementById("tipo");

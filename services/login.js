@@ -1,11 +1,16 @@
+const API_3000 = "http://localhost:3000";
+const API_URL = "https://golden-soft-app-back-end.vercel.app";
+
 document.getElementById('loginForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const username = document.getElementById('username').value; 
     const password = document.getElementById('password').value; 
 
+
+
     // Faz a requisição para o backend
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch(API_3000+'/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -23,7 +28,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         // Redireciona para outra página ou executa outra ação aqui, se necessário
             
         // Redireciona para o form.html
-        window.location.href = 'form.html';
+        window.location.href = 'public/form.html';
         
     } else {
         const error = await response.json();

@@ -1,7 +1,10 @@
+
+
+
 // Função para buscar movimentações do servidor
 async function fetchMovimentacoes() {
     try {
-      const response = await fetch('https://golden-soft-app-back-end.vercel.app/movimentacoes');
+      const response = await fetch(API_URL+'/movimentacoes');
       const categorias  = await response.json();
 
       const selectElementMovimentacoes = document.getElementById("pgto");

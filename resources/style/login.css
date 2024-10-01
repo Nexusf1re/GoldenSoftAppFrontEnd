@@ -41,8 +41,13 @@ img{
 form h4{
     color: #ffffff !important;
     font-size: 19px;
+    
 
+}
 
+form h4 a{
+    text-decoration: none;
+    color: #ffffff !important;
 }
 
 .wrapper{

@@ -1,3 +1,6 @@
+const API_3000 = "http://localhost:3000";
+const API_URL = "https://golden-soft-app-back-end.vercel.app";
+
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
