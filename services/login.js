@@ -28,7 +28,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         // Redireciona para outra página ou executa outra ação aqui, se necessário
             
         // Redireciona para o form.html
-        window.location.href = 'public/form.html';
+        window.location.href = 'form.html';
         
     } else {
         const error = await response.json();
