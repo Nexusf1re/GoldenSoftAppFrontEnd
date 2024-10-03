@@ -41,4 +41,9 @@ document
           // Redireciona o usuário para a página de login
           window.location.href = '../index.html'; // Altere para o caminho correto da sua página de login
       });
+
+      function removeInvalidCharacters() {
+        const input = document.getElementById('valorinn');
+        input.value = input.value.replace(/[eE]/g, ''); // Remove 'e' ou 'E'
+      }
       

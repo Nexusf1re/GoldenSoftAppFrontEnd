@@ -26,9 +26,13 @@
 <div class="inputBox" id="valor">
   <label id="valorout" class="labelInput">R$</label>
   <input tabindex="0" id="valorinn" autocomplete="off" type="number" max="100000000.00"
-    onkeypress="return event.charCode != 32" step="0.01" name="valor" class="inputUser" required />
+    onkeypress="return event.charCode != 32" oninput="removeInvalidCharacters()" step="0.01" name="valor" class="inputUser" required />
   <label id="valorin" for="valor" class="labelInput">Valor:</label>
 </div>
+
+<script>
+ 
+</script>
 <br />
 <br />
 <div class="inputBox">
@@ -38,7 +42,7 @@
   </select>
 </div>
 
-<script src="/services/vendedores.js"></script>
+<script src="./services/vendedores.js"></script>
 
 <br />
 <div class="inputBox">
@@ -48,7 +52,7 @@
   </select>
 </div>
 
-<script src="/services/movimentacoes.js"> </script>
+<script src="./services/movimentacoes.js"> </script>
 
 <br />
 <div class="inputBox">
@@ -66,7 +70,7 @@
 </form>
 </div>
 
-<script src="/services/form.js"></script>
+<script src="./services/form.js"></script>
 
 </body>
 <script>
