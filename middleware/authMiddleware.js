@@ -1,23 +1,22 @@
-// Função para verificar se o token JWT está presente e válido
 function isAuthenticated() {
     const token = localStorage.getItem('token'); // ou sessionStorage
-  
+    
     if (!token) {
       return false; // Token não existe
     }
-  
-    // Opcional: verificar a validade do token decodificando o JWT (por exemplo, verificar a expiração)
-    // Você pode usar bibliotecas como jwt-decode para isso
+    
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      const currentTime = Date.now() / 1000;
+      const payload = jwt_decode(token); // Use a biblioteca jwt-decode para decodificar o token
   
+      // Verifica se o token está expirado
+      const currentTime = Date.now() / 1000; // Tempo atual em segundos
       if (payload.exp < currentTime) {
         return false; // Token expirado
       }
-  
+      
       return true; // Token válido
     } catch (e) {
+      console.error("Erro ao decodificar o token:", e);
       return false; // Erro ao decodificar o token
     }
   }
