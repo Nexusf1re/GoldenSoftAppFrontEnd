@@ -24,7 +24,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     };
 
     try{
-        const response = await fetch('https://golden-soft-app-back-end.vercel.app/register', {
+        const response = await fetch(API_URL+'/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

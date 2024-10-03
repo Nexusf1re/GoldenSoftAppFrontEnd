@@ -10,7 +10,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
 
     // Faz a requisição para o backend
-    const response = await fetch(API_3000+'/login', {
+    const response = await fetch(API_URL+'/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
