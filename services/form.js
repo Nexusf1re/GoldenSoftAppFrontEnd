@@ -11,6 +11,9 @@ document
     const descricao = document.getElementById("pgto").value;
     const data = document.getElementById("data").value;
 
+    const token = localStorage.getItem('token'); // Obtém o token do localStorage
+
+
     // Atualize a URL para apontar para o seu aplicativo Vercel
     const response = await fetch(
       API_URL + "/inserir",
@@ -35,7 +38,7 @@ document
     }
   });
 
-  
+
 
 document.getElementById('logoutBtn').addEventListener('click', () => {
   // Remove o token do localStorage
