@@ -19,6 +19,3 @@ async function fetchMovimentacoes() {
       console.error("Erro ao buscar movimentações:", error);
     }
   }
-
-  // Chama a função ao carregar a página
-  window.onload = fetchMovimentacoes;
