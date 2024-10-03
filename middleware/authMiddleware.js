@@ -24,6 +24,6 @@ function isAuthenticated() {
   
   // Redirecionar se o usuário não estiver autenticado
   if (!isAuthenticated()) {
-    window.location.href = "/login.html"; // Redireciona para a página de login
+    window.location.href = "/index.html"; // Redireciona para a página de login
   }
   
