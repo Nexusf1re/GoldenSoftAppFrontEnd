@@ -64,7 +64,7 @@
 <input type="submit" name="submit" id="submit" value="Enviar" />
 
 <p class="exit">
-  <a style="color: white" href="index.html" id="logoutBtn">Sair</a>
+  <a style="color: white" id="logoutBtn">Sair</a>
 </p>
 </fieldset>
 </form>
@@ -72,7 +72,13 @@
 
 <script src="./services/form.js"></script>
 
+<noscript class="noscript-overlay">
+  <p>JavaScript está desativado no seu navegador. Por favor, ative-o para utilizar todos os recursos desta página.</p>
+</noscript>
+
 </body>
+<script src="middleware/authMiddleware.js"></script>
+
 <script>
 window.onload = async () => {
   fetchMovimentacoes();  // Busca e preenche movimentações

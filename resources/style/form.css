@@ -537,3 +537,18 @@ a:hover {
     font-size: 18px;
     cursor: pointer;
 }
+
+.noscript-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+    color: white; /* Texto branco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; /* Tamanho da fonte */
+    z-index: 9999; /* Certifica-se de que está acima de outros elementos */
+  }

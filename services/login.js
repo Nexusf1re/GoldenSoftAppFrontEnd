@@ -35,3 +35,16 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         alert('Erro: ' + error.message);  // Exibe a mensagem de erro
     }
 });
+
+
+ // Função para fazer logout
+ function logout() {
+    // Remove o token do localStorage (ou sessionStorage)
+    localStorage.removeItem('token'); // ou sessionStorage.removeItem('token');
+    
+    // Redireciona o usuário para a página de login
+    window.location.href = '/index.html'; // Substitua pelo caminho correto da sua página de login
+  }
+
+  // Adiciona um evento ao botão "Sair"
+  document.getElementById('logoutBtn').addEventListener('click', logout);
