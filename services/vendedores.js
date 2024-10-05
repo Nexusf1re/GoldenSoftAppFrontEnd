@@ -8,6 +8,8 @@ async function fetchVendedores() {
       const vendedores  = await response.json();
 
       const selectElementTipo = document.getElementById("tipo");
+      
+      selectElementTipo.innerHTML="";
 
       vendedores.forEach(vendedor => {
         const optionVendedor = document.createElement("option");

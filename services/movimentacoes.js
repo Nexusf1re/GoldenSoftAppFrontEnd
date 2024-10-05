@@ -9,6 +9,8 @@ async function fetchMovimentacoes() {
 
       const selectElementMovimentacoes = document.getElementById("pgto");
 
+      selectElementTipo.innerHTML="";
+
       categorias.forEach(categoria => {
         const option = document.createElement("option");
         option.value = categoria.categoria;  // Pega o valor correto do campo "categoria"
