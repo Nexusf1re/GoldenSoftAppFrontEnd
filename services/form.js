@@ -6,6 +6,7 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
     const nome = document.getElementById("tipo").value;
     const valor = document.getElementById("valorinn").value;
     const descricao = document.getElementById("pgto").value;
+    const observacao = document.getElementById("observacao").value;
     const data = document.getElementById("data").value;
 
     const token = localStorage.getItem('token'); // Obtém o token do localStorage
@@ -18,7 +19,7 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ nome, valor, descricao, data, username }), // Inclui o nome do usuário
+        body: JSON.stringify({ nome, valor, descricao, observacao, data, username }), // Inclui o nome do usuário
     });
 
     if (response.ok) {
