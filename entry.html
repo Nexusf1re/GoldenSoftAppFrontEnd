@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Financeiro</title>
+    <link rel="icon" href="resources/img/Golden-Soft.png">
+    <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet">
+    <link rel="stylesheet" href="resources/style/entry.css">
+    <script src="https://kit.fontawesome.com/2153c37e0b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <nav id="nav-container" class="menu">
+           <script src="components/nav.js"></script>
+        </nav>
+    </div>
+
+    <div class="box">
+        <div class="search">
+            <form id="searchForm" method="post">
+                <input type="text" name="search" placeholder="Digite para pesquisar">
+                <input type="submit" value="Pesquisar">
+            </form>
+
+            <form class="filterForm" id="filterForm" method="post">
+                <label for="specific_date">Filtrar por data :</label>
+                <input style="border-radius:8px; font-size:20px;" type="date" id="specific_date" name="specific_date">
+                <button class="ftbttn" id="ftbttn" type="submit">Filtrar</button>
+            </form>
+        </div>
+
+        <div style="overflow-x: auto;" class="table">
+            <table id="data-table">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th></th>
+                </tr>
+
+                <!-- Linhas da tabela serão inseridas dinamicamente aqui -->
+            </table>
+        </div>
+    </div>
+
+    <script src="services/entry.js"> </script>
+
+</body>
+
+</html>
