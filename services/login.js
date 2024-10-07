@@ -18,7 +18,6 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     if (response.ok) {
         const result = await response.json();
-        alert(result.message);  // Exibe a mensagem do backend
 
         // Armazena o token e o nome do usuário no localStorage
         localStorage.setItem('token', result.token);
