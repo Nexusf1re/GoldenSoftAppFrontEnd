@@ -8,7 +8,7 @@ fetch('https://golden-soft-app-back-end.vercel.app/form', {
     if (response.ok) {
         return response.text(); // Pega o HTML
     } else {
-        window.location.href = 'login.html'; // Redireciona para a página de login
+        window.location.href = 'index.html'; // Redireciona para a página de login
     }
 })
 .then(html => {
@@ -18,5 +18,5 @@ fetch('https://golden-soft-app-back-end.vercel.app/form', {
 })
 .catch(error => {
     console.error('Erro ao acessar o formulário:', error);
-    window.location.href = 'login.html'; // Redireciona em caso de erro
+    window.location.href = 'index.html'; // Redireciona em caso de erro
 });
