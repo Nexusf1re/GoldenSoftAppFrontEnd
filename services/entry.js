@@ -42,6 +42,7 @@ function populateTable(data) {
             <td>${row.nome}</td>
             <td>${valorFormatado}</td>
             <td>${row.descricao}</td>
+            <td>${row.observacao}</td>
             <td>${new Date(row.data).toLocaleDateString('pt-BR')}</td>
             <td><button class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
         `;
