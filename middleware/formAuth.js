@@ -1,22 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('token');
-    console.log('Token recuperado:', token); // Verifique se o token está presente
+    const token = localStorage.getItem('token'); // Obtém o token do armazenamento
 
     if (!token) {
-        window.location.href = 'index.html'; // Redireciona se não houver token
-        return;
+        // Se não houver token, redireciona para a página de login
+        window.location.href = 'index.html';
+        return; // Para evitar que o código continue executando
     }
 
-    fetch('https://golden-soft-app-back-end.vercel.app/api/form', {
+    // Faz uma solicitação para verificar a validade do token
+    fetch('https://golden-soft-app-back-end.vercel.app/form', {
         method: 'GET',
         headers: {
             'Authorization': token
         }
     })
     .then(response => {
-        console.log('Response Status:', response.status); // Verifique o status da resposta
-        if (!response.ok) {
-            window.location.href = 'index.html'; // Redireciona se o token não for válido
+        if (response.ok) {
+            // Se o token for válido, redireciona para o formulário
+            window.location.href = 'https://goldensoft-despesas.vercel.app/form.html';
+        } else {
+            // Redireciona se o token não for válido
+            window.location.href = 'index.html';
         }
     })
     .catch(error => {
