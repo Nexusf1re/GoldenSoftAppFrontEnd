@@ -1,22 +1,30 @@
-fetch('https://golden-soft-app-back-end.vercel.app/form', {
-    method: 'GET',
-    headers: {
-        'Authorization': localStorage.getItem('token') // ou cookies, se preferir
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'index.html'; // Redireciona se não houver token
+        return;
     }
-})
-.then(response => {
-    if (response.ok) {
-        return response.text(); // Pega o HTML
-    } else {
-        window.location.href = 'index.html'; // Redireciona para a página de login
-    }
-})
-.then(html => {
-    document.open();
-    document.write(html); // Carrega o conteúdo do formulário
-    document.close();
-})
-.catch(error => {
-    console.error('Erro ao acessar o formulário:', error);
-    window.location.href = 'index.html'; // Redireciona em caso de erro
+
+    fetch('https://golden-soft-app-back-end.vercel.app/api/form', {
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text(); // Se o token for válido, obtém o conteúdo
+        } else {
+            window.location.href = 'index.html'; // Redireciona se o token não for válido
+        }
+    })
+    .then(html => {
+        // Insere o HTML diretamente no body
+        document.getElementById('formBody').innerHTML = html; // Carrega o conteúdo do formulário no body
+    })
+    .catch(error => {
+        console.error('Erro ao acessar o formulário:', error);
+        window.location.href = 'index.html'; // Redireciona em caso de erro
+    });
 });
