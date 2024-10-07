@@ -9,7 +9,7 @@ async function fetchVendedores() {
 
       const selectElementTipo = document.getElementById("tipo");
       
-      selectElementTipo.innerHTML="";
+      //selectElementTipo.innerHTML="";
 
       vendedores.forEach(vendedor => {
         const optionVendedor = document.createElement("option");

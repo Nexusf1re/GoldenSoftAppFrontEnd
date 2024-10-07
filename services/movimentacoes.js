@@ -9,7 +9,7 @@ async function fetchMovimentacoes() {
 
       const selectElementMovimentacoes = document.getElementById("pgto");
 
-      selectElementTipo.innerHTML="";
+     // selectElementTipo.innerHTML="";
 
       categorias.forEach(categoria => {
         const option = document.createElement("option");
