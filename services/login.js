@@ -7,10 +7,8 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     const username = document.getElementById('username').value; 
     const password = document.getElementById('password').value; 
 
-
-
     // Faz a requisição para o backend
-    const response = await fetch(API_URL+'/login', {
+    const response = await fetch(API_URL + '/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,11 +20,10 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         const result = await response.json();
         alert(result.message);  // Exibe a mensagem do backend
 
-        // Armazena o token no localStorage
+        // Armazena o token e o nome do usuário no localStorage
         localStorage.setItem('token', result.token);
-        
-        // Redireciona para outra página ou executa outra ação aqui, se necessário
-            
+        localStorage.setItem('username', result.username); // Armazena o nome do usuário
+
         // Redireciona para o form.html
         window.location.href = 'form.html';
         
