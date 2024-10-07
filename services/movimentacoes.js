@@ -1,23 +1,20 @@
-
-
-
-// Função para buscar movimentações do servidor
+// movimentacoes.js
 async function fetchMovimentacoes() {
-    try {
-      const response = await fetch(API_URL+'/movimentacoes');
-      const categorias  = await response.json();
+  try {
+      const response = await fetch(API_URL + '/movimentacoes');
+      const categorias = await response.json();
 
       const selectElementMovimentacoes = document.getElementById("pgto");
 
-     // selectElementTipo.innerHTML="";
-
       categorias.forEach(categoria => {
-        const option = document.createElement("option");
-        option.value = categoria.categoria;  // Pega o valor correto do campo "categoria"
-        option.textContent = categoria.categoria;  // Exibe o texto correto no dropdown
-        selectElementMovimentacoes.appendChild(option);
+          const option = document.createElement("option");
+          option.value = categoria.categoria;
+          option.textContent = categoria.categoria;
+          selectElementMovimentacoes.appendChild(option);
       });
-    } catch (error) {
+  } catch (error) {
       console.error("Erro ao buscar movimentações:", error);
-    }
   }
+}
+
+
