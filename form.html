@@ -54,12 +54,13 @@
 <br />
 <div class="inputBox">
   <label for="pgto">Movimentação</label>
-  <select class="selects" name="pgto" id="pgto" required>
+  <select class="selects" onclick="" name="pgto" id="pgto" required>
     <option disabled selected value>Selecionar</option>
   </select>
 </div>
 
 <script src="./services/movimentacoes.js"> </script>
+<script src="./services/movimentacoesGeral.js"> </script>
 
 <br />
 <div class="inputBox">
@@ -85,6 +86,42 @@
 
 </body>
 
+<script>
+  // Adiciona um evento de mudança ao select "tipo"
+  document.getElementById('tipo').addEventListener('change', function() {
+    const pgtoSelect = document.getElementById('pgto');
+
+    // Limpa as opções existentes
+    pgtoSelect.innerHTML = '<option disabled selected value>Selecionar</option>';
+
+    // Verifica se o vendedor selecionado é "GERAL"
+    if (this.value === 'GERAL') {
+      // Carrega as opções do movimentacoesGeral.js
+      fetchMovimentacoesGeral(); // Chama a função para buscar movimentações gerais
+    } else {
+      // Carrega as opções do movimentacoes.js
+      fetchMovimentacoes(); // Chama a função para buscar movimentações
+    }
+  });
+
+  async function fetchMovimentacoesGeral() {
+    try {
+      const response = await fetch(API_URL + '/movimentacoesGeral');
+      const categorias = await response.json();
+
+      const selectElementMovimentacoes = document.getElementById("pgto");
+
+      categorias.forEach(categoria => {
+        const option = document.createElement("option");
+        option.value = categoria.categoria;  // Pega o valor correto do campo "categoria"
+        option.textContent = categoria.categoria;  // Exibe o texto correto no dropdown
+        selectElementMovimentacoes.appendChild(option);
+      });
+    } catch (error) {
+      console.error("Erro ao buscar movimentações gerais:", error);
+    }
+  }
+</script>
 
 <script>
 window.onload = async () => {
