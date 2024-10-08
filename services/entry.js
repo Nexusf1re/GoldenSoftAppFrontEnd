@@ -57,3 +57,10 @@ function editarRegistro(id) {
 
 // Carrega os dados ao iniciar a página
 document.addEventListener('DOMContentLoaded', fetchData);
+
+
+
+function filterUser(user) {
+document.getElementById("searchForm").innerHTML += '<input type="hidden" name="search" value="">';
+document.getElementById("searchForm").submit();
+}
