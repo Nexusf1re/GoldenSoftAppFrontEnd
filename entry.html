@@ -11,9 +11,8 @@
     <script src="https://kit.fontawesome.com/2153c37e0b.js" crossorigin="anonymous"></script>
 </head>
 
-<script src="services/authSession.js"></script>
-
 <body>
+    <script src="services/authSession.js"></script>
 
     <div class="wrapper">
         <nav id="nav-container" class="menu">
@@ -23,12 +22,12 @@
 
     <div class="box">
         <div class="search">
-            <form id="searchForm" method="post">
+            <form id="searchForm" method="get">
                 <input type="text" name="search" placeholder="Digite para pesquisar">
                 <input type="submit" value="Pesquisar">
             </form>
 
-            <form class="filterForm" id="filterForm" method="post">
+            <form class="filterForm" id="filterForm" method="get">
                 <label for="specific_date">Filtrar por data :</label>
                 <input style="border-radius:8px; font-size:20px;" type="date" id="specific_date" name="specific_date">
                 <button class="ftbttn" id="ftbttn" type="submit">Filtrar</button>
@@ -37,23 +36,36 @@
 
         <div style="overflow-x: auto;" class="table">
             <table id="data-table">
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Valor</th>
-                    <th>Descrição</th>
-                    <th>Observação</th>
-                    <th>Data</th>
-                    <th></th>
-                </tr>
-
-                <!-- Linhas da tabela serão inseridas dinamicamente aqui -->
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Valor</th>
+                        <th>Descrição</th>
+                        <th>Observação</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas da tabela serão inseridas dinamicamente aqui -->
+                </tbody>
             </table>
         </div>
     </div>
 
-    <script src="services/entry.js"> </script>
+    <script src="services/entry.js"></script>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            // Lógica para buscar e exibir os dados com base no valor da pesquisa pode ser adicionada aqui.
+            console.log('Pesquisar por:', this.search.value);
+        });
 
+        document.getElementById('filterForm').addEventListener('submit', function(event) {
+            // Lógica para filtrar os dados pela data pode ser adicionada aqui.
+            console.log('Filtrar por data:', this.specific_date.value);
+        });
+    </script>
 </body>
 
 </html>
