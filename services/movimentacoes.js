@@ -1,7 +1,7 @@
 // movimentacoes.js
 async function fetchMovimentacoes() {
   try {
-      const response = await fetch(API_URL + '/movimentacoes');
+      const response = await fetch(API_URL + '/movimentacoes/movimentacoes');
       const categorias = await response.json();
 
       const selectElementMovimentacoes = document.getElementById("pgto");

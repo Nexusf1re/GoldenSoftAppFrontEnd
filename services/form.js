@@ -13,7 +13,7 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
     const username = localStorage.getItem('username'); // Obtém o nome do usuário logado
 
     // Envio da requisição
-    const response = await fetch(API_URL + "/inserir", {
+    const response = await fetch(API_URL + "/despesas/inserir", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

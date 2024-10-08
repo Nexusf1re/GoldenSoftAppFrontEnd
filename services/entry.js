@@ -5,7 +5,7 @@ async function fetchData() {
     try {
         const token = localStorage.getItem('token'); // Obtém o token do localStorage
 
-        const response = await fetch(API_URL + '/entry', {
+        const response = await fetch(API_URL + '/despesas/entry', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
