@@ -30,6 +30,8 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
     } else {
         const errorMessage = await response.text();
         alert(`Erro ao enviar os dados: ${errorMessage}`);
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
         window.location.href = 'index.html';
     }
 });
