@@ -12,6 +12,7 @@
 </head>
 
 <script src="middleware/authSession.js"></script>
+<script>window.onload = checkToken;</script>
 
 <div class="wrapper">
   <nav id="nav-container" class="menu">
@@ -114,6 +115,7 @@
 <script>
 window.onload = async () => {
   fetchVendedores();     // Busca e preenche vendedores
+  window.onload = checkToken; 
 };
 </script>
 </html>

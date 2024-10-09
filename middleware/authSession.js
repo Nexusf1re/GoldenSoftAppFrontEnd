@@ -29,6 +29,3 @@ const checkToken = async () => {
     window.location.href = 'index.html';
   }
 };
-
-// Chame a função checkToken quando a página for carregada
-window.onload = checkToken;
