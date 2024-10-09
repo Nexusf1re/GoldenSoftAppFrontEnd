@@ -19,6 +19,8 @@ const checkToken = async () => {
     if (response.status === 401 || response.status === 403) {
       // Se o token for inválido ou expirado, redireciona para a página de login
       window.location.href = 'index.html';
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
     } else {
       // Token válido, continue com o fluxo normal
       console.log("Token válido");
@@ -26,6 +28,8 @@ const checkToken = async () => {
   } catch (error) {
     console.error('Erro ao validar token:', error);
     // Em caso de erro, redireciona para a página de login
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
     window.location.href = 'index.html';
   }
 };
