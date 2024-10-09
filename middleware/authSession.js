@@ -9,7 +9,7 @@ const checkToken = async () => {
   }
 
   try {
-    const response = await fetch('http://seu-backend-url.com/user/validate-token', {
+    const response = await fetch('http://https://golden-soft-app-back-end.vercel.app/user/validate-token', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
