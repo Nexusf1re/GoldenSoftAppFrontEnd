@@ -6,10 +6,10 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const spinner = document.getElementById('loadingSpinner'); 
+    const overlay = document.getElementById('loadingOverlay'); // Pega o overlay
 
-    // Exibe o spinner
-    spinner.style.display = 'block';
+    // Exibe o overlay com o spinner centralizado
+    overlay.style.display = 'flex';
 
     try {
         // Faz a requisição para o backend
@@ -55,7 +55,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             backdrop: `rgba(0,0,0,0.4)`,
         });
     } finally {
-        // Oculta o spinner após a requisição
-        spinner.style.display = 'none';
+        // Oculta o overlay após a requisição
+        overlay.style.display = 'none';
     }
 });
