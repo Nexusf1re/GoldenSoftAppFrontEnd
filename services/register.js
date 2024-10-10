@@ -24,6 +24,21 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         return;
     }
 
+    // Valida o formato do email usando expressão regular
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro de Validação',
+            text: 'Por favor, insira um e-mail válido.',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#d33',
+            background: '#fefefe',
+            backdrop: `rgba(0,0,0,0.4)`,
+        });
+        return;
+    }
+
     // Objeto para os dados a serem enviados para o backend
     const data = {
         name: usuario,
