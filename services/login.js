@@ -23,11 +23,20 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         localStorage.setItem('token', result.token);
         localStorage.setItem('username', result.username); // Armazena o nome do usuário
 
-        // Redireciona para o form.html
         window.location.href = 'form.html';
         
     } else {
         const error = await response.json();
-        alert('Erro: ' + error.message);  // Exibe a mensagem de erro
+        
+        // Usando SweetAlert2 para mostrar o erro
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro de Login',
+            text: error.message,  // Mensagem de erro recebida
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#d33',
+            background: '#fefefe',
+            backdrop: `rgba(0,0,0,0.4)`,
+        });
     }
 });

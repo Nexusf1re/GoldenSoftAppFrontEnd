@@ -19,7 +19,7 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ nome, valor, descricao, observacao, data, username }), // Inclui o nome do usuário
+        body: JSON.stringify({ nome, valor, descricao, observacao, data, username }),
     });
 
     if (response.ok) {
@@ -27,11 +27,23 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
         alert(message);
         // Limpa o formulário após envio
         document.getElementById("expenseForm").reset();
-    } else {
-        const errorMessage = await response.text();
-        alert(`Erro ao enviar os dados: ${errorMessage}`);
+    }
+     // Código que utiliza o SweetAlert2
+    else {
+      const errorMessage = await response.text();
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao enviar os dados',
+        text: errorMessage,
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#d33',
+        background: '#fefefe',
+        backdrop: `rgba(0,0,0,0.4)`,
+      }).then(() => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
         window.location.href = 'index.html';
+      });
     }
 });

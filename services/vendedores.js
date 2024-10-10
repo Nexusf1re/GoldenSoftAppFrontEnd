@@ -1,6 +1,4 @@
 
-
-
 // Função para buscar movimentações do servidor
 async function fetchVendedores() {
     try {

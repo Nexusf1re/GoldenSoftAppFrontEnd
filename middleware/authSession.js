@@ -26,7 +26,13 @@ const checkToken = async () => {
       console.log("Token válido");
     }
   } catch (error) {
-    console.error('Erro ao validar token:', error);
+    console.error(
+      '%c❌ Erro ao validar token: %c%s',
+      'color: white; background-color: darkred; font-weight: bold; padding: 2px 4px; border-radius: 3px;',
+      'color: darkred;',
+      error
+    );
+    
     // Em caso de erro, redireciona para a página de login
     localStorage.removeItem('token');
     localStorage.removeItem('username');

@@ -1,4 +1,4 @@
-// movimentacoesGeral.js
+
 async function fetchMovimentacoesGeral() {
   try {
       const response = await fetch(API_URL + '/movimentacoes/movimentacoesGeral');
