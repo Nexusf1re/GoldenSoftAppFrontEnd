@@ -57,6 +57,10 @@
 
     <script src="services/entry.js"></script>
     <script>
+        window.onload = async () => {
+            checkToken();
+        };
+
         document.getElementById('searchForm').addEventListener('submit', function(event) {
             // Lógica para buscar e exibir os dados com base no valor da pesquisa pode ser adicionada aqui.
             console.log('Pesquisar por:', this.search.value);
