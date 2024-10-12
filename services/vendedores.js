@@ -1,10 +1,8 @@
 
-
-
 // Função para buscar movimentações do servidor
 async function fetchVendedores() {
     try {
-      const response = await fetch(API_URL+'/vendedores');
+      const response = await fetch(API_URL+'/vendedores/vendedores');
       const vendedores  = await response.json();
 
       const selectElementTipo = document.getElementById("tipo");

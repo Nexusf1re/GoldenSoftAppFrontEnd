@@ -1,5 +1,10 @@
 const nav = `
 <ul>
+  <!--
+  <li class="list">
+    <a class="active" href="home.html">Página Inicial</a>
+  </li>
+  -->
   <li class="list">
     <a class="active" href="form.html">Formulário</a>
   </li>
@@ -8,11 +13,7 @@ const nav = `
     <a class="active" href="entry.html">Lançamentos</a>
   </li>
   
-   <!--
-  <li class="list">
-    <a class="active" href="dashboard.html">Relatório</a>
-  </li>
-    -->
+  
 </ul>
 `;
 

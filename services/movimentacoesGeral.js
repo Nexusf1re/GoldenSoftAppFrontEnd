@@ -1,7 +1,7 @@
-// movimentacoesGeral.js
+
 async function fetchMovimentacoesGeral() {
   try {
-      const response = await fetch(API_URL + '/movimentacoesGeral');
+      const response = await fetch(API_URL + '/movimentacoes/movimentacoesGeral');
       const categorias = await response.json();
 
       const selectElementMovimentacoes = document.getElementById("pgto");
