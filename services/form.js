@@ -27,7 +27,7 @@ document.getElementById("expenseForm").addEventListener("submit", async (event) 
     Swal.fire({
       icon: 'success',
       title: 'Sucesso',
-      text: alert(message),
+      text: message,
       confirmButtonText: 'OK',
       confirmButtonColor: '#28a745', // Verde para sucesso
       background: '#fefefe',
