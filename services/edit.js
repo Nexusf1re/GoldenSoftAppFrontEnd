@@ -38,6 +38,7 @@ async function fetchEntryData(id) {
 }
 
 // Função para preencher o formulário com os dados obtidos
+// Função para preencher o formulário com os dados obtidos
 function populateForm(data) {
     console.log('Preenchendo o formulário com os dados:', data); // Log para verificar os dados
 
@@ -46,15 +47,17 @@ function populateForm(data) {
     document.getElementById('observacao').value = data.observacao || ''; // Certifique-se de que `data.observacao` existe
     document.getElementById('data').value = new Date(data.data).toISOString().split('T')[0] || ''; // Formata a data
 
-    // Preenche o select de movimentações com o valor correto
+    // **Aqui você deve substituir 'descricao' pela propriedade correta se necessário**
+    const movimentacaoCorreta = data.descricao; // Verifique se a movimentação correta é `descricao`
     const selectElementMovimentacoes = document.getElementById("pgto");
-    selectElementMovimentacoes.value = data.movimentacao || ''; // Verifica se data.movimentacao existe
+    selectElementMovimentacoes.value = movimentacaoCorreta || ''; // Preenche o select
 
     // Se o valor da movimentação não estiver na lista, adicione um log para verificar
-    if (!Array.from(selectElementMovimentacoes.options).some(option => option.value === data.movimentacao)) {
-        console.log(`Movimentação ${data.movimentacao} não encontrada no dropdown.`);
+    if (!Array.from(selectElementMovimentacoes.options).some(option => option.value === movimentacaoCorreta)) {
+        console.log(`Movimentação ${movimentacaoCorreta} não encontrada no dropdown.`);
     }
 }
+
 
 // Obtenção do ID da URL
 const params = new URLSearchParams(window.location.search);
