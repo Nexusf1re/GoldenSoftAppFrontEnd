@@ -1,5 +1,3 @@
-const API_URL = "https://golden-soft-app-back-end.vercel.app";
-
 window.onload = async () => {
     await fetchVendedores();     // Busca e preenche vendedores
     checkToken();
