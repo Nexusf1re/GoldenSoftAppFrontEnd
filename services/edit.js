@@ -1,8 +1,3 @@
-window.onload = async () => {
-  await fetchVendedores(); // Busca e preenche vendedores
-  checkToken();
-};
-
 // Função para buscar os dados e preencher o formulário
 async function fetchEntryData(id) {
   try {
@@ -42,74 +37,13 @@ function populateForm(data) {
   document.getElementById('tipo').value = data.nome;
   document.getElementById('observacao').value = data.observacao;
   document.getElementById('data').value = new Date(data.data).toISOString().split('T')[0]; // Formata a data
-}
 
-// Função para buscar movimentações gerais
-async function fetchMovimentacoesGeral() {
-  try {
-      const response = await fetch(API_URL + '/movimentacoes/movimentacoesGeral');
-      const categorias = await response.json();
-
-      const selectElementMovimentacoes = document.getElementById("pgto");
-      selectElementMovimentacoes.innerHTML = '<option disabled selected value>Selecionar</option>'; // Limpa opções antigas
-
-      categorias.forEach(categoria => {
-          console.log(`Adicionando categoria: ${categoria.categoria}`); // Log para verificação
-          const option = document.createElement("option");
-          option.value = categoria.categoria;
-          option.textContent = categoria.categoria;
-          selectElementMovimentacoes.appendChild(option);
-      });
-  } catch (error) {
-      console.error("Erro ao buscar movimentações gerais:", error);
-  }
-}
-
-// Função para buscar movimentações normais
-async function fetchMovimentacoes() {
-  try {
-      const response = await fetch(API_URL + '/movimentacoes/movimentacoes');
-      const categorias = await response.json();
-
-      const selectElementMovimentacoes = document.getElementById("pgto");
-      selectElementMovimentacoes.innerHTML = '<option disabled selected value>Selecionar</option>'; // Limpa opções antigas
-
-      categorias.forEach(categoria => {
-          console.log(`Adicionando categoria: ${categoria.categoria}`); // Log para verificação
-          const option = document.createElement("option");
-          option.value = categoria.categoria;
-          option.textContent = categoria.categoria;
-          selectElementMovimentacoes.appendChild(option);
-      });
-  } catch (error) {
-      console.error("Erro ao buscar movimentações:", error);
-  }
-}
-
-// Obtenção do ID da URL
-const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
-
-// Carrega os dados ao iniciar a página
-document.addEventListener('DOMContentLoaded', () => {
-  fetchEntryData(id);
-});
-
-// Evento para capturar a mudança do vendedor
-document.getElementById("tipo").addEventListener("change", async function () {
-  const selectedValue = this.value; // Captura o valor selecionado
-
-  // Limpa as opções atuais do select de movimentações
+  // Preenche o select de movimentações com o valor correto
   const selectElementMovimentacoes = document.getElementById("pgto");
-  selectElementMovimentacoes.innerHTML = '<option disabled selected value>Selecionar</option>'; // Adiciona a opção padrão
+  selectElementMovimentacoes.value = data.movimentacao; // Assume que data.movimentacao contém o valor da movimentação
 
-  console.log(`Vendedor selecionado: ${selectedValue}`);
-
-  if (selectedValue === "GERAL") {
-      console.log("Carregando movimentações gerais...");
-      await fetchMovimentacoesGeral(); // Chama a função para buscar movimentações gerais
-  } else {
-      console.log("Carregando movimentações normais...");
-      await fetchMovimentacoes(); // Chama a função para buscar movimentações normais
+  // Se o valor da movimentação não estiver na lista, adicione um log para verificar
+  if (!Array.from(selectElementMovimentacoes.options).some(option => option.value === data.movimentacao)) {
+      console.log(`Movimentação ${data.movimentacao} não encontrada no dropdown.`);
   }
-});
+}
