@@ -51,7 +51,8 @@ function populateTable(data) {
 }
 
 function editarRegistro(id) {
-    window.location.href = `editar.html?id=${id}`;
+    window.location.href = `edit.html?id=${id}`;
+
 }
 
 // Carrega os dados ao iniciar a página

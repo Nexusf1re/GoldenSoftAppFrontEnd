@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="resources/style/edit.css" />
+  <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="icon" href="resources/img/Golden-Soft-Logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!--Biblioteca para alertas JS-->
+  <title>Editar Despesa - Golden Soft</title>
+</head>
+
+<body id="formBody">
+  <div class="wrapper">
+    <nav id="nav-container" class="menu">
+      <script src="components/nav.js"></script>
+    </nav>
+  </div>
+
+  <div class="box">
+    <form id="expenseForm">
+      <div id="image">
+        <img disable selected value src="resources/img/Golden-Soft-Logo.png" alt="Go Logo">
+      </div>
+      <legend><b style="color: rgb(0, 0, 0);">Editar Despesa</b></legend>
+
+      <br />
+      <div class="inputBox" id="valor">
+        <label id="valorout" class="labelInput">R$</label>
+        <input tabindex="0" id="valorinn" autocomplete="off" type="number" max="100000000.00"
+          step="0.01" name="valor" class="inputUser" required />
+        <label id="valorin" for="valor" class="labelInput">Valor:</label>
+      </div>
+
+      <br />
+      <div class="inputBox">
+        <label for="tipo">Vendedor</label>
+        <select class="selects" name="tipo" id="tipo" required>
+          <option disabled selected value>Selecionar</option>
+        </select>
+      </div>
+
+      <br />
+      <div class="inputBox">
+        <label for="pgto">Movimentação</label>
+        <select class="selects" name="pgto" id="pgto" required>
+          <option disabled selected value>Selecionar</option>
+        </select>
+      </div>
+
+      <br />
+      <div class="inputBox">
+        <input type="text" name="observacao" id="observacao" class="inputUser">
+        <label for="observacao" class="labelInput">Observação:</label>
+      </div>
+
+      <br />
+      <div class="inputBox">
+        <label for="data"><b>Data</b></label>
+        <input class="selects" style="border-radius: 18px" type="date" name="data" id="data" required />
+      </div>
+
+      <br />
+      <input type="submit" name="submit" id="submit" value="Salvar Alterações" />
+
+      <p class="exit">
+        <a style="color: white" id="logoutBtn">Sair</a>
+        <script src="services/logout.js"></script>
+      </p>
+    </form>
+  </div>
+
+  <script src="./services/form.js"></script>
+
+  <script>
+    const API_URL = "https://golden-soft-app-back-end.vercel.app";
+
+    // Função para obter o ID da URL
+    function getIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // Função para buscar os dados da despesa pelo ID e preencher o formulário
+    async function fetchEntryData(id) {
+      try {
+        const token = localStorage.getItem('token'); // Obtém o token do localStorage
+
+        const response = await fetch(`${API_URL}/despesas/entry/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Enviando o token no cabeçalho
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar dados: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        populateForm(data); // Preenche o formulário com os dados obtidos
+      } catch (error) {
+        console.error('Erro ao buscar dados da API:', error);
+      }
+    }
+
+    // Função para preencher o formulário com os dados da despesa
+    function populateForm(data) {
+      document.getElementById('valorinn').value = parseFloat(data.valor).toFixed(2); // Preenche o valor
+      document.getElementById('observacao').value = data.observacao;
+      document.getElementById('data').value = new Date(data.data).toISOString().substring(0, 10); // Formata a data para o campo de data
+      // Preencha os selects de vendedores e movimentações conforme necessário
+    }
+
+    // Função para enviar as alterações para a API
+    document.getElementById('expenseForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // Impede o envio padrão do formulário
+
+      const id = getIdFromUrl(); // Obtém o ID da URL
+
+      const updatedData = {
+        valor: parseFloat(document.getElementById('valorinn').value),
+        observacao: document.getElementById('observacao').value,
+        data: document.getElementById('data').value,
+        // Adicionar aqui vendedor e movimentação, caso sejam alterados
+      };
+
+      try {
+        const token = localStorage.getItem('token');
+
+        const response = await fetch(`${API_URL}/despesas/entry/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(updatedData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro ao atualizar dados: ${response.statusText}`);
+        }
+
+        Swal.fire('Sucesso!', 'Dados atualizados com sucesso!', 'success').then(() => {
+          window.location.href = 'index.html';
+        });
+      } catch (error) {
+        console.error('Erro ao atualizar dados da API:', error);
+        Swal.fire('Erro!', 'Não foi possível atualizar os dados.', 'error');
+      }
+    });
+
+    // Carregar dados ao iniciar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      const id = getIdFromUrl(); // Obtém o ID
+      if (id) {
+        fetchEntryData(id); // Carrega os dados da despesa com base no ID
+      }
+      fetchVendedores(); // Função para preencher os selects, se necessário
+      checkToken(); // Verifica autenticação
+    });
+
+    document.getElementById("tipo").addEventListener("change", async function () {
+      const selectedValue = this.value; // Captura o valor selecionado
+      const selectElementMovimentacoes = document.getElementById("pgto");
+      selectElementMovimentacoes.innerHTML = '<option disabled selected value>Selecionar</option>'; // Adiciona a opção padrão
+
+      if (selectedValue === "GERAL") {
+        await fetchMovimentacoesGeral();
+      } else {
+        await fetchMovimentacoes();
+      }
+    });
+  </script>
+
+  <script src="middleware/authSession.js"></script>
+  <script src="services/vendedores.js"></script>
+  <script src="services/movimentacoes.js"></script>
+  <script src="services/movimentacoesGeral.js"></script>
+
+  <noscript class="noscript-overlay">
+    <p>JavaScript está desativado no seu navegador. Por favor, ative-o para utilizar todos os recursos desta página.</p>
+  </noscript>
+</body>
+
+</html>
