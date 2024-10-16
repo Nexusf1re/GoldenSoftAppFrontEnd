@@ -25,8 +25,8 @@
         <img disable selected value src="resources/img/Golden-Soft-Logo.png" alt="Go Logo">
       </div>
       <legend><b style="color: rgb(0, 0, 0);">Editar Despesa</b></legend>
-
-      <br />
+      <br>
+      <br/>
       <div class="inputBox" id="valor">
         <label id="valorout" class="labelInput">R$</label>
         <input tabindex="0" id="valorinn" autocomplete="off" type="number" max="100000000.00"
@@ -51,6 +51,7 @@
       </div>
 
       <br />
+      <br>
       <div class="inputBox">
         <input type="text" name="observacao" id="observacao" class="inputUser">
         <label for="observacao" class="labelInput">Observação:</label>
@@ -75,8 +76,6 @@
   <script src="./services/form.js"></script>
 
   <script>
-    const API_URL = "https://golden-soft-app-back-end.vercel.app";
-
     // Função para obter o ID da URL
     function getIdFromUrl() {
       const params = new URLSearchParams(window.location.search);
