@@ -1,3 +1,8 @@
+ window.onload = async () => {
+  fetchVendedores();     // Busca e preenche vendedores
+  checkToken();
+};
+ 
  // Função para buscar os dados e preencher o formulário
  async function fetchEntryData(id) {
     try {
@@ -39,3 +44,21 @@
   document.addEventListener('DOMContentLoaded', () => {
     fetchEntryData(id);
   });
+
+
+  document.getElementById("tipo").addEventListener("change", async function() {
+    const selectedValue = this.value; // Captura o valor selecionado
+
+    // Limpa as opções atuais do select de movimentações
+    const selectElementMovimentacoes = document.getElementById("pgto");
+    selectElementMovimentacoes.innerHTML = '<option disabled selected value>Selecionar</option>'; // Adiciona a opção padrão
+
+    if (selectedValue === "GERAL") {
+        // Se o vendedor selecionado for "GERAL", chama a função para buscar movimentações gerais
+        await fetchMovimentacoesGeral();
+    } else {
+        // Caso contrário, chama a função para buscar movimentações normais
+        await fetchMovimentacoes();
+    }
+});
+
