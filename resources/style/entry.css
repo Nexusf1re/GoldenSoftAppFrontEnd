@@ -296,4 +296,8 @@ th{
         background-color: #45a049 !important; /* Cor de fundo do botão ao passar o mouse */
     }
     
+
+    .far fa-edit{
+        border-radius: 5px;
+    }
    

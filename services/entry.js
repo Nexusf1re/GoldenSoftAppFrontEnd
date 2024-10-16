@@ -38,7 +38,6 @@ function populateTable(data) {
         const newRow = document.createElement('tr');
 
         newRow.innerHTML = `
-            <td>${row.id}</td>
             <td>${row.nome}</td>
             <td>${valorFormatado}</td>
             <td>${row.descricao}</td>
