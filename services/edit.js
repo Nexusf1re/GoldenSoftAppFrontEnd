@@ -22,7 +22,7 @@ async function fetchEntryData(id) {
         }
 
         const data = await response.json();
-        console.log('Dados retornados:', data); // Log para verificar os dados retornados
+        //console.log('Dados retornados:', data); // Log para verificar os dados retornados
 
         // Verifica o vendedor e carrega as movimentações antes de preencher o formulário
         if (data.nome === "GERAL") {
@@ -37,24 +37,24 @@ async function fetchEntryData(id) {
     }
 }
 
-// Função para preencher o formulário com os dados obtidos
+
 // Função para preencher o formulário com os dados obtidos
 function populateForm(data) {
-    console.log('Preenchendo o formulário com os dados:', data); // Log para verificar os dados
+    //console.log('Preenchendo o formulário com os dados:', data); // Log para verificar os dados
 
-    document.getElementById('valorinn').value = data.valor || ''; // Certifique-se de que `data.valor` existe
-    document.getElementById('tipo').value = data.nome || ''; // Certifique-se de que `data.nome` existe
-    document.getElementById('observacao').value = data.observacao || ''; // Certifique-se de que `data.observacao` existe
-    document.getElementById('data').value = new Date(data.data).toISOString().split('T')[0] || ''; // Formata a data
+    document.getElementById('valorinn').value = data.valor || ''; 
+    document.getElementById('tipo').value = data.nome || ''; 
+    document.getElementById('observacao').value = data.observacao || '';
+    document.getElementById('data').value = new Date(data.data).toISOString().split('T')[0] || ''; 
 
-    // **Aqui você deve substituir 'descricao' pela propriedade correta se necessário**
-    const movimentacaoCorreta = data.descricao; // Verifique se a movimentação correta é `descricao`
+
+    const movimentacaoCorreta = data.descricao; 
     const selectElementMovimentacoes = document.getElementById("pgto");
-    selectElementMovimentacoes.value = movimentacaoCorreta || ''; // Preenche o select
+    selectElementMovimentacoes.value = movimentacaoCorreta || ''; 
 
     // Se o valor da movimentação não estiver na lista, adicione um log para verificar
     if (!Array.from(selectElementMovimentacoes.options).some(option => option.value === movimentacaoCorreta)) {
-        console.log(`Movimentação ${movimentacaoCorreta} não encontrada no dropdown.`);
+        //console.log(`Movimentação ${movimentacaoCorreta} não encontrada no dropdown.`);
     }
 }
 
