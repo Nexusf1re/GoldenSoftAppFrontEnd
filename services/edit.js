@@ -22,6 +22,14 @@ async function fetchEntryData(id) {
       }
 
       const data = await response.json();
+
+      // Verifica o vendedor e carrega as movimentações antes de preencher o formulário
+      if (data.nome === "GERAL") {
+          await fetchMovimentacoesGeral();
+      } else {
+          await fetchMovimentacoes();
+      }
+
       populateForm(data); // Preenche o formulário com os dados obtidos
   } catch (error) {
       console.error('Erro ao buscar dados da API:', error);
@@ -34,13 +42,6 @@ function populateForm(data) {
   document.getElementById('tipo').value = data.nome;
   document.getElementById('observacao').value = data.observacao;
   document.getElementById('data').value = new Date(data.data).toISOString().split('T')[0]; // Formata a data
-
-  // Carrega movimentações dependendo do vendedor selecionado
-  if (data.nome === "GERAL") {
-      fetchMovimentacoesGeral();
-  } else {
-      fetchMovimentacoes();
-  }
 }
 
 // Função para buscar movimentações gerais
@@ -48,7 +49,7 @@ async function fetchMovimentacoesGeral() {
   try {
       const response = await fetch(API_URL + '/movimentacoes/movimentacoesGeral');
       const categorias = await response.json();
-      
+
       const selectElementMovimentacoes = document.getElementById("pgto");
       selectElementMovimentacoes.innerHTML = '<option disabled selected value>Selecionar</option>'; // Limpa opções antigas
 
