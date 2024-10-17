@@ -141,10 +141,13 @@ document.getElementById("expenseForm").addEventListener("submit", function(event
 });
 
 
+document.getElementById('deleteBtn').addEventListener("submit"), function(event){
+    event.preventDefault();
+    deleteEntry();
+}
 
-//Botão para deletar lançamento
-document.getElementById('deleteBtn').addEventListener('click', () => {
-    function deleteEntry() {
+
+     function deleteEntry() {
         const token = localStorage.getItem('token');
         const username = localStorage.getItem('username');
 
