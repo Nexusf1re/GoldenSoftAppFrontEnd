@@ -133,8 +133,73 @@ async function updateEntry() {
     }
 }
 
+
 // Adiciona o listener de submissão do formulário
 document.getElementById("expenseForm").addEventListener("submit", function(event) {
     event.preventDefault();
     updateEntry(); 
 });
+
+
+
+//Botão para deletar lançamento
+document.getElementById('deleteBtn').addEventListener('click', () => {
+    function deleteEntry() {
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('username');
+
+        fetch(`${API_URL}/despesas/entryDelete/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ username })
+        })
+            .then(response => {
+                if (response.ok) {
+                    const message = response.text();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso',
+                        text: message,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#28a745', // Verde para sucesso
+                        background: '#fefefe',
+                        backdrop: `rgba(0,0,0,0.4)`,
+                    }).then(() => {
+                        // Limpa o formulário e redireciona para sucesso
+                        document.getElementById("expenseForm").reset();
+                        window.location.href = 'entry.html';
+                    });
+                } else {
+                    const errorMessage = response.text();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro ao enviar os dados',
+                        text: errorMessage,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#d33',
+                        background: '#fefefe',
+                        backdrop: `rgba(0,0,0,0.4)`,
+                    }).then(() => {
+                        // Remove token e redireciona para login
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('username');
+                        window.location.href = 'index.html';
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: error.message,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#d33',
+                    background: '#fefefe',
+                    backdrop: `rgba(0,0,0,0.4)`,
+                    })
+        })
+            }
+})
