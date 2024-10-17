@@ -42,7 +42,7 @@ function populateTable(data) {
             <td>${valorFormatado}</td>
             <td>${row.descricao}</td>
             <td>${row.observacao}</td>
-            <td>${new Date(row.data).toLocaleDateString('pt-BR')}</td>
+            <td>${formatDate(row.data)}</td>  <!-- Usa a função formatada -->
             <td><button class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
         `;
 
@@ -50,11 +50,19 @@ function populateTable(data) {
     });
 }
 
+// Função para formatar a data sem fuso horário
+function formatDate(dataString) {
+    const date = new Date(dataString);
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Adiciona 1 porque os meses são indexados em 0
+    const year = date.getUTCFullYear();
+  
+    return `${day}/${month}/${year}`;
+}
+
 function editarRegistro(id) {
     window.location.href = `edit.html?id=${id}`;
-
 }
 
 // Carrega os dados ao iniciar a página
 document.addEventListener('DOMContentLoaded', fetchData);
-
