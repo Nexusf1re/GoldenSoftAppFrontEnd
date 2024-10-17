@@ -22,8 +22,6 @@ async function fetchEntryData(id) {
         }
 
         const data = await response.json();
-        //console.log('Dados retornados:', data); // Log para verificar os dados retornados
-
         // Verifica o vendedor e carrega as movimentações antes de preencher o formulário
         if (data.nome === "GERAL") {
             await fetchMovimentacoesGeral();
@@ -37,16 +35,12 @@ async function fetchEntryData(id) {
     }
 }
 
-
 // Função para preencher o formulário com os dados obtidos
 function populateForm(data) {
-    //console.log('Preenchendo o formulário com os dados:', data); // Log para verificar os dados
-
     document.getElementById('valorinn').value = data.valor || ''; 
     document.getElementById('tipo').value = data.nome || ''; 
     document.getElementById('observacao').value = data.observacao || '';
     document.getElementById('data').value = new Date(data.data).toISOString().split('T')[0] || ''; 
-
 
     const movimentacaoCorreta = data.descricao; 
     const selectElementMovimentacoes = document.getElementById("pgto");
@@ -58,7 +52,6 @@ function populateForm(data) {
     }
 }
 
-
 // Obtenção do ID da URL
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
@@ -68,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchEntryData(id);
 });
 
+// Lida com a alteração no campo 'tipo'
 document.getElementById("tipo").addEventListener("change", async function() {
     const selectedValue = this.value; // Captura o valor selecionado
 
@@ -82,4 +76,63 @@ document.getElementById("tipo").addEventListener("change", async function() {
         // Caso contrário, chama a função para buscar movimentações normais
         await fetchMovimentacoes();
     }
+});
+
+// Função para enviar a atualização
+async function updateEntry() {
+    const token = localStorage.getItem('token');
+    const nome = document.getElementById('tipo').value;
+    const valor = document.getElementById('valorinn').value;
+    const descricao = document.getElementById('pgto').value;
+    const observacao = document.getElementById('observacao').value;
+    const data = document.getElementById('data').value;
+    const username = localStorage.getItem('username');
+
+    const response = await fetch(`${API_URL}/despesas/entryUpdate/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ nome, valor, descricao, observacao, data, username }),
+    });
+  
+    if (response.ok) {
+        const message = await response.text();
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso',
+            text: message,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#28a745', // Verde para sucesso
+            background: '#fefefe',
+            backdrop: `rgba(0,0,0,0.4)`,
+        }).then(() => {
+            // Limpa o formulário e redireciona após sucesso
+            document.getElementById("expenseForm").reset();
+            window.location.href = 'entry.html';
+        });
+    } else {
+        const errorMessage = await response.text();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro ao enviar os dados',
+            text: errorMessage,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#d33',
+            background: '#fefefe',
+            backdrop: `rgba(0,0,0,0.4)`,
+        }).then(() => {
+            // Remove token e redireciona para login
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        });
+    }
+}
+
+// Adiciona o listener de submissão do formulário
+document.getElementById("expenseForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    updateEntry(); 
 });
