@@ -43,7 +43,7 @@ function populateTable(data) {
             <td>${row.descricao}</td>
             <td>${row.observacao}</td>
             <td>${formatDate(row.data)}</td>  <!-- Usa a função formatada -->
-            <td><button class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
+            <td><button id="alterar" class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
         `;
 
         table.appendChild(newRow);
