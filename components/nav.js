@@ -6,11 +6,11 @@ const nav = `
   </li>
   -->
   <li class="list">
-    <a class="active" href="form.html">Formulário</a>
+    <a class="active" href="form.html">Lançamento</a>
   </li>
  
   <li class="list">
-    <a class="active" href="entry.html">Lançamentos</a>
+    <a class="active" href="entry.html">Histórico</a>
   </li>
   
   
