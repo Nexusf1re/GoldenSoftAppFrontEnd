@@ -141,15 +141,20 @@ document.getElementById("expenseForm").addEventListener("submit", function (even
 });
 
 
-document.getElementById('deleteBtn').addEventListener("submit", function (event) {
+// Alterar de "submit" para "click"
+document.getElementById('deleteBtn').addEventListener("click", function (event) {
     event.preventDefault();
     deleteEntry();
 });
 
-
 function deleteEntry() {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+    
+    // Obtenção do ID da URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
 
     fetch(`${API_URL}/despesas/entryDelete/${id}`, {
         method: 'DELETE',
@@ -159,49 +164,49 @@ function deleteEntry() {
         },
         body: JSON.stringify({ username })
     })
-        .then(response => {
-            if (response.ok) {
-                const message = response.text();
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso',
-                    text: message,
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#28a745', // Verde para sucesso
-                    background: '#fefefe',
-                    backdrop: `rgba(0,0,0,0.4)`,
-                }).then(() => {
-                    // Limpa o formulário e redireciona para sucesso
-                    document.getElementById("expenseForm").reset();
-                    window.location.href = 'entry.html';
-                });
-            } else {
-                const errorMessage = response.text();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao enviar os dados',
-                    text: errorMessage,
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#d33',
-                    background: '#fefefe',
-                    backdrop: `rgba(0,0,0,0.4)`,
-                }).then(() => {
-                    // Remove token e redireciona para login
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('username');
-                    window.location.href = 'index.html';
-                });
-            }
-        })
-        .catch(error => {
+    .then(async response => {  // Usar async para o bloco de resposta
+        if (response.ok) {
+            const message = await response.text();  // Usar await para garantir que seja resolvido
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso',
+                text: message,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#28a745', // Verde para sucesso
+                background: '#fefefe',
+                backdrop: `rgba(0,0,0,0.4)`,
+            }).then(() => {
+                // Limpa o formulário e redireciona para sucesso
+                document.getElementById("expenseForm").reset();
+                window.location.href = 'entry.html';
+            });
+        } else {
+            const errorMessage = await response.text();  // Usar await para pegar o erro corretamente
             Swal.fire({
                 icon: 'error',
-                title: 'Erro',
-                text: error.message,
+                title: 'Erro ao enviar os dados',
+                text: errorMessage,
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#d33',
                 background: '#fefefe',
                 backdrop: `rgba(0,0,0,0.4)`,
-            })
-        })
+            }).then(() => {
+                // Remove token e redireciona para login
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                window.location.href = 'index.html';
+            });
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: error.message,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#d33',
+            background: '#fefefe',
+            backdrop: `rgba(0,0,0,0.4)`,
+        });
+    });
 }
