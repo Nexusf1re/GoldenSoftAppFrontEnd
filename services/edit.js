@@ -86,7 +86,7 @@ async function updateEntry() {
     const nome = document.getElementById('tipo').value;
     const valor = document.getElementById('valorinn').value;
     const descricao = document.getElementById('pgto').value;
-    const observacao = document.getElementById('observacao').value;
+    const observacao = document.getElementById("observacao").value.toUpperCase();
     const data = document.getElementById('data').value;
     const username = localStorage.getItem('username');
 
