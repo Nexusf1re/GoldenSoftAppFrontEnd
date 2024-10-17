@@ -82,7 +82,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('/GoldenSoftAppFrontEnd/resources/img/oat-ups.png');
+    background-image: url('../img/oat-ups.png');
     background-image: no-repeat;
     /*background: radial-gradient(circle, rgba(12, 76, 86, 1) 0%, rgba(17, 68, 84, 1) 49%, rgba(10, 35, 41, 1) 100%);*/
     background-size: cover;
