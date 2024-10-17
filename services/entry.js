@@ -24,9 +24,12 @@ async function fetchData() {
     }
 }
 
-// Função para preencher a tabela com os dados da API
+// Função para preencher a tabela com os dados da API, ordenados por data
 function populateTable(data) {
     const table = document.getElementById('data-table');
+
+    // Ordena os dados por data (mais recente primeiro)
+    data.sort((a, b) => new Date(b.data) - new Date(a.data)); // Ordem decrescente (mais recente primeiro)
 
     data.forEach(row => {
         // Certifique-se de que o valor está sendo tratado como número
@@ -42,7 +45,7 @@ function populateTable(data) {
             <td>${valorFormatado}</td>
             <td>${row.descricao}</td>
             <td>${row.observacao}</td>
-            <td>${formatDate(row.data)}</td>  <!-- Usa a função formatada -->
+            <td>${formatDate(row.data)}</td>
             <td><button id="alterar" class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
         `;
 
@@ -54,11 +57,12 @@ function populateTable(data) {
 function formatDate(dataString) {
     const date = new Date(dataString);
     const day = String(date.getUTCDate()).padStart(2, '0');
-    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Adiciona 1 porque os meses são indexados em 0
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     const year = date.getUTCFullYear();
-  
+
     return `${day}/${month}/${year}`;
 }
+
 
 function editarRegistro(id) {
     window.location.href = `edit.html?id=${id}`;
