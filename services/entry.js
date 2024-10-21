@@ -67,9 +67,9 @@ function formatDate(dataString) {
 // Função para inicializar o DataTables
 function initializeDataTable() {
     $('#data-table').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.6/i18n/Portuguese-Brasil.json"
-        },
+     //   "language": {
+     //     "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/Portuguese-Brasil.json" // URL alternativa
+     //  },
         "paging": true,
         "searching": true,
         "ordering": true,
@@ -77,6 +77,7 @@ function initializeDataTable() {
         "lengthChange": true
     });
 }
+
 
 // Função de redirecionamento ao editar um registro
 function editarRegistro(id) {
