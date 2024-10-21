@@ -47,6 +47,7 @@ function populateTable(data) {
             <td>${row.descricao}</td>
             <td>${row.observacao}</td>
             <td>${formatDate(row.data)}</td>
+            <td>${row.id}</td>
             <td><button id="alterar" class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
         `;
 
