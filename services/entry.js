@@ -74,7 +74,7 @@ function initializeDataTable() {
     // Inicializa o DataTables
     $('#data-table').DataTable({
         "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/Portuguese-Brasil.json"
+            "url": "//cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json"
         },
         "paging": true,
         "searching": true,
