@@ -306,6 +306,7 @@ th{
         border-radius: 5px;
         border: none;
         font-size: larger;        
+        margin-bottom: 5px;
     }
 
     label{
