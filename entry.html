@@ -10,6 +10,8 @@
     <script src="https://kit.fontawesome.com/2153c37e0b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- DataTables CSS -->
+    <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/style/entry.css">
 </head>
 
@@ -42,15 +44,18 @@
         </div>
     </div>
 
-    <script src="services/entry.js"></script>
+    <!-- jQuery (necessário para o DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!--Bibliotecas para datatable-->
+    <!-- DataTables JS -->
     <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-    <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+
+    <script src="services/entry.js"></script>
 
     <script>
         window.onload = async () => {
-            checkToken();
+            await checkToken();
+            fetchData(); // Chama a função de busca de dados ao carregar a página
         };
     </script>
 </body>
