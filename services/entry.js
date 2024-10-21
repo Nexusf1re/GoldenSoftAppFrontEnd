@@ -18,7 +18,8 @@ async function fetchData() {
         }
 
         const data = await response.json();
-        populateTable(data);
+        populateTable(data);  // Preenche a tabela com os dados
+        initializeDataTable(); // Inicializa o DataTables após preencher a tabela
     } catch (error) {
         console.error('Erro ao buscar dados da API:', error);
     }
@@ -26,16 +27,16 @@ async function fetchData() {
 
 // Função para preencher a tabela com os dados da API, ordenados por data
 function populateTable(data) {
-    const table = document.getElementById('data-table');
+    const tableBody = document.querySelector('#data-table tbody');  // Usando o tbody diretamente
+
+    // Limpa o corpo da tabela antes de inserir novos dados
+    tableBody.innerHTML = '';
 
     // Ordena os dados por data (mais recente primeiro)
     data.sort((a, b) => new Date(b.data) - new Date(a.data)); // Ordem decrescente (mais recente primeiro)
 
     data.forEach(row => {
-        // Certifique-se de que o valor está sendo tratado como número
         const valor = parseFloat(row.valor);  // Converte o valor para número
-
-        // Verifica se o valor é válido antes de aplicar toFixed
         const valorFormatado = isNaN(valor) ? 'Valor inválido' : `R$&nbsp;${valor.toFixed(2)}`;
 
         const newRow = document.createElement('tr');
@@ -49,7 +50,7 @@ function populateTable(data) {
             <td><button id="alterar" class="far fa-edit" onClick="editarRegistro('${row.id}')"></button></td>
         `;
 
-        table.appendChild(newRow);
+        tableBody.appendChild(newRow);
     });
 }
 
@@ -63,7 +64,21 @@ function formatDate(dataString) {
     return `${day}/${month}/${year}`;
 }
 
+// Função para inicializar o DataTables
+function initializeDataTable() {
+    $('#data-table').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.6/i18n/Portuguese-Brasil.json"
+        },
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "lengthChange": true
+    });
+}
 
+// Função de redirecionamento ao editar um registro
 function editarRegistro(id) {
     window.location.href = `edit.html?id=${id}`;
 }
