@@ -81,7 +81,7 @@ function initializeDataTable() {
         "searching": true,
         "ordering": true,
         "info": true,
-        "order": [[0, 'desc']] // Ordena a primeira coluna (índice 0) em ordem decrescente
+        "order": [[4, 'desc']] // Ordena a primeira coluna (índice 0) em ordem decrescente
       //  "lengthChange": true
     });
 }
