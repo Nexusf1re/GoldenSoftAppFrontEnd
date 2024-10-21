@@ -5,12 +5,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="resources/style/form.css" />
+<link href="resources/style/loadingSpinner.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=JetBrains Mono" rel="stylesheet" />
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 <link rel="icon" href="resources/img/Golden-Soft-Logo.png" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!--Biblioteca para alertas JS-->
 <title>Despesas Golden Soft</title>
 </head>
+
+<!-- Overlay de carregamento -->
+<div id="loadingOverlay" style="display: none;">
+  <div id="loadingSpinner"></div> <!-- Elemento para o spinner -->
+</div>
+
+
 
 <div class="wrapper">
   <nav id="nav-container" class="menu">
@@ -112,8 +120,8 @@
 
 <script>
 window.onload = async () => {
+  await checkToken();
   fetchVendedores();     // Busca e preenche vendedores
-  checkToken();
 };
 </script>
 <script src="middleware/authSession.js"></script>
