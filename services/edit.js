@@ -1,4 +1,4 @@
-API_URL = "https://golden-soft-app-back-end.vercel.app";
+ const API_URL = "https://golden-soft-app-back-end.vercel.app";
 
 window.onload = async () => {
     fetchVendedores(); // Busca e preenche vendedores
