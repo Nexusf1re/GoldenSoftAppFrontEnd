@@ -1,9 +1,9 @@
- const API_URL = "https://golden-soft-app-back-end.vercel.app";
 
 window.onload = async () => {
     fetchVendedores(); // Busca e preenche vendedores
     checkToken();
 };
+
 
 // Função para buscar os dados e preencher o formulário
 async function fetchEntryData(id) {
@@ -36,6 +36,8 @@ async function fetchEntryData(id) {
         console.error('Erro ao buscar dados da API:', error);
     }
 }
+
+
 
 // Função para preencher o formulário com os dados obtidos
 function populateForm(data) {
@@ -79,6 +81,8 @@ document.getElementById("tipo").addEventListener("change", async function () {
         await fetchMovimentacoes();
     }
 });
+
+
 
 // Função para enviar a atualização
 async function updateEntry() {
