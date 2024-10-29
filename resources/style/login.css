@@ -170,6 +170,7 @@ form h4 a{
   }
 
   #cadastrar{
+    display: none;
     color: #ffffff;
     font-weight: 500;
     font-size: 18px;
